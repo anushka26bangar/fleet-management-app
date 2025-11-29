@@ -124,7 +124,7 @@
         alert("Vehicle Added Successfully.")
       }
     
-       function renderfleet(){
+       function renderFleet(){
           document.getElementById("main");
           main.innerHTML= "";
           fleet.forEach((vehicle, index) =>{
@@ -134,19 +134,35 @@
         card.style.borderRadius = "8px";
         card.style.boxShadow = "0 0 8px rgb(0, 0 ,0 ,0.2)";
 
-        card.innerHTML = `<img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"`
-        Reg No:<p style="margin-top:0;">${regid}</p>
-                          Category:<p>${category}</p>
-          Driver:<p>${dname}</p>
-          Status:<p>${avail}</p>;
+        card.innerHTML = `<img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"
+        style="width:100%; height:120px; object-fit:cover">
+         RegNo:<p style="margin-top:0;">${vehicle.regid}</p>
+                          Category:<p>${vehicle.category}</p>
+          Driver:<p>${vehicle.dname}</p>
+          Status:<p>${vehicle.avail}</p>;
 
-        <button onclick="">
-
-        document.getElementById("main").appendChild(card);
+        <button onclick="UpdateDriver($(index))">Update Driver </button><br>
+        <button onclick="toggleAvail($(index))">Change Status</button><br>
+        <button onclick="deleteDriver($(index))">Delete Driver </button><br>
+            `
+             main.appendChild(card);
        });
        }
-
-         
+        function UpdateDriver(index){
+        let newDriver = prompt("Enter the Driver Name:");
+        if(newDriver !== null && newDriver.trim() !==""){
+          renderFleet();
+        }
+        }
+        function toggleAvail(index){
+          let current= fleet[index].avail;
+          fleet[index].avail= current ==="Available" ? "Unavailable":"Available" ;;
+          renderFleet();
+        }
+        function deleteDriver(index){
+          if(confirm("Are you sure you wanna delete this vehicle?"));
+          
+        }
     </script>
   </body>
 </html>
