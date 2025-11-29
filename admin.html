@@ -1,48 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Page</title>
-</head>
-<body style="display: flex; height: 100vh; margin: 0;">
-  <div class="sidebar" style="width: 250px;background-color: rgb(219, 193, 243); padding: 20px;">
-    <h2 style="text-align: center;">Add Vehicle</h2>
-    <label>Reg No of Vehicle</label>
-    <input type="text" id="regid" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;"><br><br>
-     <label>Category</label>
-    <select name="Category" id="category" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;">
-      <option value="">Select</option>
-      <option value="auto">Auto</option>
-      <option value="car">Car</option>
-      <option value="truck">Truck</option>
-    </select><br><br>
-     <label>Driver Name </label>
-    <input type="text" id="dname" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;"><br><br>
-    
-     <label>Availablability </label><br>
-  <select name="Availablability" id="Availablability" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;">
-    <option value="">Select</option>
-    <option value="">Available</option>
-    <option value="">unavailable</option>
-  </select><br><br>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Page</title>
+  </head>
+  <body style="display: flex; height: 100vh; margin: 0">
+    <div
+      class="sidebar"
+      style="width: 250px; background-color: rgb(219, 193, 243); padding: 20px"
+    >
+      <h2 style="text-align: center">Add Vehicle</h2>
+      <label>Reg No of Vehicle</label>
+      <input
+        type="text"
+        id="regid"
+        style="
+          width: 100%;
+          padding: 6px;
+          margin: 6px 0;
+          border: none;
+          border-radius: 4px;
+        "
+        required
+      /><br /><br />
+      <label>Category</label>
+      <select
+        name="Category"
+        id="category"
+        style="
+          width: 100%;
+          padding: 6px;
+          margin: 6px 0;
+          border: none;
+          border-radius: 4px;
+        "
+        required
+      >
+        <option value="">Select</option>
+        <option value="auto">Auto</option>
+        <option value="car">Car</option>
+        <option value="truck">Truck</option></select
+      ><br /><br />
+      <label>Driver Name </label>
+      <input
+        type="text"
+        id="dname"
+        style="
+          width: 100%;
+          padding: 6px;
+          margin: 6px 0;
+          border: none;
+          border-radius: 4px;
+        "
+        required
+      /><br /><br />
 
-     <button onclick="addFleet()" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;">Add Fleet</button>
-  </div>
+      <label>Availablability </label><br />
+      <select
+        name="Availablability"
+        id="Availablability"
+        style="
+          width: 100%;
+          padding: 6px;
+          margin: 6px 0;
+          border: none;
+          border-radius: 4px;
+        "
+        required
+      >
+        <option value="">Select</option>
+        <option value="">Available</option>
+        <option value="">unavailable</option></select
+      ><br /><br />
 
-<div class="main">
+      <button
+        onclick="addFleet()"
+        style="
+          width: 100%;
+          padding: 6px;
+          margin: 6px 0;
+          border: none;
+          border-radius: 4px;
+        "
+      >
+        Add Fleet
+      </button>
+    </div>
 
-</div>
-  <script>
-    function addFleet(){
-      let regid = document.getElementById("regid").value;
-      let category = document.getElementById("").value;
-      let dname = document.getElementById("").value;
-      let available = document.getElementById("").value;
-    }
-  </script>
+    <div class="main"></div>
+    <script>
+      function addFleet() {
+        let regid = document.getElementById("regid").value;
+        let category = document.getElementById("category").value;
+        let dname = document.getElementById("dname").value;
+        let avail = document.getElementById("Availablability").value;
 
+        // if (regid === "" || category === "" || dname === "" || avail === "") {
+        //   alert("All field required .");
+        //   return;
+        // }
+        let card = document.createElement("div");
+        card.style.background = "white";
+        card.style.padding = "15px";
+        card.style.borderRadius = "8px";
+        card.style.boxShadow = "0 0 8px rgb(0, 0 ,0 ,0.2)";
 
+        card.innerHTML = `Reg No:<p style="margin-top:0;">${regid}</p>
+                          Category:<p>${category}</p>
+          Driver:<p>${dname}</p>
+          Status:<p>${avail}</p>`;
 
-</body>
+          document.getElementById("main").apendChild(card);
+          document.getElementById("regid").value;
+          document.getElementById("category").value;
+          document.getElementById("dname").value;
+          document.getElementById("Availablability").value;
+      }
+    </script>
+  </body>
 </html>
