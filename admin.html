@@ -85,7 +85,7 @@
     </div>
 
     <div
-      class="main"
+      id="main"
       style="
         flex: 1;
         background-color: rgb(240, 200, 200);
@@ -97,6 +97,7 @@
       "
     ></div>
     <script>
+      let fleet=[];
       function addFleet() {
         let regid = document.getElementById("regid").value;
         let category = document.getElementById("category").value;
@@ -112,24 +113,40 @@
           alert("All field required.");
           return;
         }
+        fleet.push({regid,category,dname,avail});
+
+        renderFleet();
+
+        document.getElementById("regid").value="";
+        document.getElementById("category").value="";
+        document.getElementById("dname").value="";
+        document.getElementById("Availablability").value="";
+        alert("Vehicle Added Successfully.")
+      }
+    
+       function renderfleet(){
+          document.getElementById("main");
+          main.innerHTML= "";
+          fleet.forEach((vehicle, index) =>{
         let card = document.createElement("div");
         card.style.background = "white";
         card.style.padding = "15px";
         card.style.borderRadius = "8px";
         card.style.boxShadow = "0 0 8px rgb(0, 0 ,0 ,0.2)";
 
-        card.innerHTML = `Reg No:<p style="margin-top:0;">${regid}</p>
+        card.innerHTML = `<img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"`
+        Reg No:<p style="margin-top:0;">${regid}</p>
                           Category:<p>${category}</p>
           Driver:<p>${dname}</p>
-          Status:<p>${avail}</p>`;
+          Status:<p>${avail}</p>;
+
+        <button onclick="">
 
         document.getElementById("main").appendChild(card);
+       });
+       }
 
-        document.getElementById("regid").value="";
-        document.getElementById("category").value="";
-        document.getElementById("dname").value="";
-        document.getElementById("Availablability").value="";
-      }
+         
     </script>
   </body>
 </html>
