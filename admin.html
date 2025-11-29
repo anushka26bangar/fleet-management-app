@@ -82,6 +82,24 @@
       >
         Add Fleet
       </button>
+      </div>
+      <div style="width: 100%; background-color: aquamarine; padding: 10px; display: flex;gap: 20px; align-items: center;">
+       <h3>Filters</h3>
+       <label>Category filter</label>
+       <select id="filtercategory" onchange="applyfilters()">
+        <option value="">All</option>
+        <option value="car">car</option>
+        <option value="truck">truck</option>
+        <option value="auto">auto</option>
+       </select>
+          <label>Availablability</label>
+          <select id="filteravail" onchange="applyfilters()">
+            <option value="">All</option>
+             <option value="">Available</option>
+              <option value="">Unavailable</option>
+          </select>
+          <button onclick="clearFilters()">Clear </button>
+
     </div>
 
     <div
@@ -139,11 +157,11 @@
          RegNo:<p style="margin-top:0;">${vehicle.regid}</p>
                           Category:<p>${vehicle.category}</p>
           Driver:<p>${vehicle.dname}</p>
-          Status:<p>${vehicle.avail}</p>;
+          Status:<p>${vehicle.avail}</p>
 
-        <button onclick="UpdateDriver($(index))">Update Driver </button><br>
-        <button onclick="toggleAvail($(index))">Change Status</button><br>
-        <button onclick="deleteDriver($(index))">Delete Driver </button><br>
+        <button onclick="UpdateDriver(${index})">Update Driver </button><br>
+        <button onclick="toggleAvail(${index})">Change Status</button><br>
+        <button onclick="deleteDriver(${index})">Delete Driver </button><br>
             `
              main.appendChild(card);
        });
@@ -161,8 +179,25 @@
         }
         function deleteDriver(index){
           if(confirm("Are you sure you wanna delete this vehicle?"));
-          
+          fleet.splice(index,1);
+          renderFleet();
         }
+        function applyfilters(){
+          let cat = document.getElementById("filtercategory");
+          let avail = document.getElementById("filteravail");
+          let filtered =fleet.filter(v=>{
+            let matchcat=(cat==="All"||v.category===cat);
+            let matchAvail =(avail==="All"||v.avail=== avail)
+            return matchAvail && matchcat;
+          });
+          renderFleet(filtered);
+        }
+
+function clearFilters(){
+   document.getElementById("filtercategory").value="ALL";
+   document.getElementById("filteravail").value="ALL";
+   renderFleet(fleet)
+}
     </script>
   </body>
 </html>
