@@ -6,6 +6,25 @@
     <title>Admin Page</title>
   </head>
   <body style="display: flex; height: 100vh; margin: 0">
+    <div style="width: 100%; background-color: aquamarine; padding: 10px; display: flex;gap: 20px; align-items: center;">
+       <h3>Filters</h3>
+       <label>Category filter</label>
+       <select id="filtercategory" onchange="applyfilters()">
+        <option value="">All</option>
+        <option value="car">car</option>
+        <option value="truck">truck</option>
+        <option value="auto">auto</option>
+       </select>
+          <label>Availablability</label>
+          <select id="filteravail" onchange="applyfilters()">
+            <option value="">All</option>
+             <option value="">Available</option>
+              <option value="">Unavailable</option>
+          </select>
+          <button onclick="clearFilters()">Clear </button>
+
+    </div>
+    <div style="display:flex; height: 100vh;">
     <div
       class="sidebar"
       style="width: 250px; background-color: rgb(219, 193, 243); padding: 20px"
@@ -83,24 +102,6 @@
         Add Fleet
       </button>
       </div>
-      <div style="width: 100%; background-color: aquamarine; padding: 10px; display: flex;gap: 20px; align-items: center;">
-       <h3>Filters</h3>
-       <label>Category filter</label>
-       <select id="filtercategory" onchange="applyfilters()">
-        <option value="">All</option>
-        <option value="car">car</option>
-        <option value="truck">truck</option>
-        <option value="auto">auto</option>
-       </select>
-          <label>Availablability</label>
-          <select id="filteravail" onchange="applyfilters()">
-            <option value="">All</option>
-             <option value="">Available</option>
-              <option value="">Unavailable</option>
-          </select>
-          <button onclick="clearFilters()">Clear </button>
-
-    </div>
 
     <div
       id="main"
@@ -114,6 +115,7 @@
         overflow-y: auto;
       "
     ></div>
+    </div>
     <script>
       let fleet=[];
       function addFleet() {
