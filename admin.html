@@ -5,7 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Page</title>
 </head>
-<body>
-  
+<body style="display: flex; height: 100vh; margin: 0;">
+  <div class="sidebar" style="width: 250px;background-color: rgb(219, 193, 243); padding: 20px;">
+    <h2 style="text-align: center;">Add Vehicle</h2>
+    <label>Reg No of Vehicle</label>
+    <input type="text" id="regid" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;"><br><br>
+     <label>Category</label>
+    <select name="Category" id="category" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;">
+      <option value="">Select</option>
+      <option value="auto">Auto</option>
+      <option value="car">Car</option>
+      <option value="truck">Truck</option>
+    </select><br><br>
+     <label>Driver Name </label>
+    <input type="text" id="dname" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;"><br><br>
+    
+     <label>Availablability </label><br>
+  <select name="Availablability" id="Availablability" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;">
+    <option value="">Select</option>
+    <option value="">Available</option>
+    <option value="">unavailable</option>
+  </select><br><br>
+
+     <button onclick="addFleet()" style="width: 100%; padding: 6px; margin: 6px 0; border: none;border-radius: 4px;">Add Fleet</button>
+  </div>
+
+<div class="main">
+
+</div>
+  <script>
+    function addFleet(){
+      let regid = document.getElementById("regid").value;
+      let category = document.getElementById("").value;
+      let dname = document.getElementById("").value;
+      let available = document.getElementById("").value;
+    }
+  </script>
+
+
+
 </body>
 </html>
