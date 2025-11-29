@@ -22,7 +22,6 @@
           border: none;
           border-radius: 4px;
         "
-        required
       /><br /><br />
       <label>Category</label>
       <select
@@ -35,7 +34,6 @@
           border: none;
           border-radius: 4px;
         "
-        required
       >
         <option value="">Select</option>
         <option value="auto">Auto</option>
@@ -53,7 +51,6 @@
           border: none;
           border-radius: 4px;
         "
-        required
       /><br /><br />
 
       <label>Availablability </label><br />
@@ -67,7 +64,6 @@
           border: none;
           border-radius: 4px;
         "
-        required
       >
         <option value="">Select</option>
         <option value="">Available</option>
@@ -88,7 +84,18 @@
       </button>
     </div>
 
-    <div class="main"></div>
+    <div
+      class="main"
+      style="
+        flex: 1;
+        background-color: rgb(240, 200, 200);
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        overflow-y: auto;
+      "
+    ></div>
     <script>
       function addFleet() {
         let regid = document.getElementById("regid").value;
@@ -96,10 +103,15 @@
         let dname = document.getElementById("dname").value;
         let avail = document.getElementById("Availablability").value;
 
-        // if (regid === "" || category === "" || dname === "" || avail === "") {
-        //   alert("All field required .");
-        //   return;
-        // }
+        if (
+          regid === " " ||
+          category === " " ||
+          dname === " " ||
+          avail === " "
+        ) {
+          alert("All field required.");
+          return;
+        }
         let card = document.createElement("div");
         card.style.background = "white";
         card.style.padding = "15px";
@@ -111,11 +123,12 @@
           Driver:<p>${dname}</p>
           Status:<p>${avail}</p>`;
 
-          document.getElementById("main").apendChild(card);
-          document.getElementById("regid").value;
-          document.getElementById("category").value;
-          document.getElementById("dname").value;
-          document.getElementById("Availablability").value;
+        document.getElementById("main").appendChild(card);
+
+        document.getElementById("regid").value="";
+        document.getElementById("category").value="";
+        document.getElementById("dname").value="";
+        document.getElementById("Availablability").value="";
       }
     </script>
   </body>
