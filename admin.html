@@ -1,205 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Page</title>
-  </head>
-  <body style="display: flex; height: 100vh; margin: 0">
-    <div style="width: 100%; background-color: aquamarine; padding: 10px; display: flex;gap: 20px; align-items: center;">
-       <h3>Filters</h3>
-       <label>Category filter</label>
-       <select id="filtercategory" onchange="applyfilters()">
-        <option value="">All</option>
-        <option value="car">car</option>
-        <option value="truck">truck</option>
-        <option value="auto">auto</option>
-       </select>
-          <label>Availablability</label>
-          <select id="filteravail" onchange="applyfilters()">
-            <option value="">All</option>
-             <option value="">Available</option>
-              <option value="">Unavailable</option>
-          </select>
-          <button onclick="clearFilters()">Clear </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+</head>
 
-    </div>
-    <div style="display:flex; height: 100vh;">
-    <div
-      class="sidebar"
-      style="width: 250px; background-color: rgb(219, 193, 243); padding: 20px"
-    >
-      <h2 style="text-align: center">Add Vehicle</h2>
+<body style="margin:0; padding:0; display:flex; flex-direction:column; height:100vh;">
+
+  <div style="width:100%; background-color:aquamarine; padding:10px; display:flex; gap:20px; align-items:center;">
+    <h3>Filters</h3>
+
+    <label>Category</label>
+    <select id="filtercategory" onchange="applyfilters()">
+      <option value="">All</option>
+      <option value="car">Car</option>
+      <option value="truck">Truck</option>
+      <option value="auto">Auto</option>
+    </select>
+
+    <label>Availability</label>
+    <select id="filteravail" onchange="applyfilters()">
+      <option value="">All</option>
+      <option value="Available">Available</option>
+      <option value="Unavailable">Unavailable</option>
+    </select>
+
+    <button onclick="clearFilters()">Clear</button>
+  </div>
+
+  <div style="display:flex; height:100%;">
+
+    <div style="width:30%; background-color:rgb(219,193,243); padding:20px;">
+      <h2 style="text-align:center;">Add Vehicle</h2>
+
       <label>Reg No of Vehicle</label>
-      <input
-        type="text"
-        id="regid"
-        style="
-          width: 100%;
-          padding: 6px;
-          margin: 6px 0;
-          border: none;
-          border-radius: 4px;
-        "
-      /><br /><br />
+      <input type="text" id="regid" style="width:100%; padding:6px; margin:6px 0; border:none; border-radius:4px;">
+
       <label>Category</label>
-      <select
-        name="Category"
-        id="category"
-        style="
-          width: 100%;
-          padding: 6px;
-          margin: 6px 0;
-          border: none;
-          border-radius: 4px;
-        "
-      >
+      <select id="category" style="width:100%; padding:6px; margin:6px 0; border:none; border-radius:4px;">
         <option value="">Select</option>
         <option value="auto">Auto</option>
         <option value="car">Car</option>
-        <option value="truck">Truck</option></select
-      ><br /><br />
-      <label>Driver Name </label>
-      <input
-        type="text"
-        id="dname"
-        style="
-          width: 100%;
-          padding: 6px;
-          margin: 6px 0;
-          border: none;
-          border-radius: 4px;
-        "
-      /><br /><br />
+        <option value="truck">Truck</option>
+      </select>
 
-      <label>Availablability </label><br />
-      <select
-        name="Availablability"
-        id="Availablability"
-        style="
-          width: 100%;
-          padding: 6px;
-          margin: 6px 0;
-          border: none;
-          border-radius: 4px;
-        "
-      >
+      <label>Driver Name</label>
+      <input type="text" id="dname" style="width:100%; padding:6px; margin:6px 0; border:none; border-radius:4px;">
+
+      <label>Availability</label>
+      <select id="Availablability" style="width:100%; padding:6px; margin:6px 0; border:none; border-radius:4px;">
         <option value="">Select</option>
-        <option value="">Available</option>
-        <option value="">unavailable</option></select
-      ><br /><br />
+        <option value="Available">Available</option>
+        <option value="Unavailable">Unavailable</option>
+      </select>
 
-      <button
-        onclick="addFleet()"
-        style="
-          width: 100%;
-          padding: 6px;
-          margin: 6px 0;
-          border: none;
-          border-radius: 4px;
-        "
-      >
+      <button onclick="addFleet()" style="width:100%; padding:6px; margin:6px 0; border:none; border-radius:4px;">
         Add Fleet
       </button>
-      </div>
-
-    <div
-      id="main"
-      style="
-        flex: 1;
-        background-color: rgb(240, 200, 200);
-        padding: 20px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        overflow-y: auto;
-      "
-    ></div>
     </div>
-    <script>
-      let fleet=[];
-      function addFleet() {
-        let regid = document.getElementById("regid").value;
-        let category = document.getElementById("category").value;
-        let dname = document.getElementById("dname").value;
-        let avail = document.getElementById("Availablability").value;
 
-        if (
-          regid === " " ||
-          category === " " ||
-          dname === " " ||
-          avail === " "
-        ) {
-          alert("All field required.");
-          return;
-        }
-        fleet.push({regid,category,dname,avail});
+    <div id="main" style="width:70%; background-color:rgb(240,200,200); padding:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:15px; overflow-y:auto;">
+    </div>
 
-        renderFleet();
+  </div>
 
-        document.getElementById("regid").value="";
-        document.getElementById("category").value="";
-        document.getElementById("dname").value="";
-        document.getElementById("Availablability").value="";
-        alert("Vehicle Added Successfully.")
-      }
-    
-       function renderFleet(){
-          document.getElementById("main");
-          main.innerHTML= "";
-          fleet.forEach((vehicle, index) =>{
-        let card = document.createElement("div");
-        card.style.background = "white";
-        card.style.padding = "15px";
-        card.style.borderRadius = "8px";
-        card.style.boxShadow = "0 0 8px rgb(0, 0 ,0 ,0.2)";
+<script>
+  let fleet = [];
 
-        card.innerHTML = `<img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"
-        style="width:100%; height:120px; object-fit:cover">
-         RegNo:<p style="margin-top:0;">${vehicle.regid}</p>
-                          Category:<p>${vehicle.category}</p>
-          Driver:<p>${vehicle.dname}</p>
-          Status:<p>${vehicle.avail}</p>
+  function addFleet() {
+    let regid = document.getElementById("regid").value.trim();
+    let category = document.getElementById("category").value.trim();
+    let dname = document.getElementById("dname").value.trim();
+    let avail = document.getElementById("Availablability").value.trim();
 
-        <button onclick="UpdateDriver(${index})">Update Driver </button><br>
-        <button onclick="toggleAvail(${index})">Change Status</button><br>
-        <button onclick="deleteDriver(${index})">Delete Driver </button><br>
-            `
-             main.appendChild(card);
-       });
-       }
-        function UpdateDriver(index){
-        let newDriver = prompt("Enter the Driver Name:");
-        if(newDriver !== null && newDriver.trim() !==""){
-          renderFleet();
-        }
-        }
-        function toggleAvail(index){
-          let current= fleet[index].avail;
-          fleet[index].avail= current ==="Available" ? "Unavailable":"Available" ;;
-          renderFleet();
-        }
-        function deleteDriver(index){
-          if(confirm("Are you sure you wanna delete this vehicle?"));
-          fleet.splice(index,1);
-          renderFleet();
-        }
-        function applyfilters(){
-          let cat = document.getElementById("filtercategory");
-          let avail = document.getElementById("filteravail");
-          let filtered =fleet.filter(v=>{
-            let matchcat=(cat==="All"||v.category===cat);
-            let matchAvail =(avail==="All"||v.avail=== avail)
-            return matchAvail && matchcat;
-          });
-          renderFleet(filtered);
-        }
+    if (!regid || !category || !dname || !avail) {
+      alert("All fields required.");
+      return;
+    }
 
-function clearFilters(){
-   document.getElementById("filtercategory").value="ALL";
-   document.getElementById("filteravail").value="ALL";
-   renderFleet(fleet)
-}
-    </script>
-  </body>
+    fleet.push({ regid, category, dname, avail });
+    renderFleet(fleet);
+
+    document.getElementById("regid").value = "";
+    document.getElementById("category").value = "";
+    document.getElementById("dname").value = "";
+    document.getElementById("Availablability").value = "";
+
+    alert("Vehicle Added Successfully.");
+  }
+
+  function renderFleet(list) {
+    let main = document.getElementById("main");
+    main.innerHTML = "";
+
+    list.forEach((vehicle, index) => {
+      let card = document.createElement("div");
+      card.style.background = "white";
+      card.style.padding = "15px";
+      card.style.borderRadius = "8px";
+      card.style.boxShadow = "0 0 8px rgba(0,0,0,0.2)";
+
+      card.innerHTML = `
+        <img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"
+        style="width:100%; height:120px; object-fit:cover;">
+
+        <p><b>Reg No:</b> ${vehicle.regid}</p>
+        <p><b>Category:</b> ${vehicle.category}</p>
+        <p><b>Driver:</b> ${vehicle.dname}</p>
+        <p><b>Status:</b> ${vehicle.avail}</p>
+
+        <button onclick="UpdateDriver(${index})">Update Driver</button><br><br>
+        <button onclick="toggleAvail(${index})">Change Status</button><br><br>
+        <button onclick="deleteDriver(${index})">Delete</button>
+      `;
+      main.appendChild(card);
+    });
+  }
+
+  function UpdateDriver(index) {
+    let newDriver = prompt("Enter the new driver name:");
+    if (newDriver && newDriver.trim() !== "") {
+      fleet[index].dname = newDriver.trim();
+      renderFleet(fleet);
+    }
+  }
+
+  function toggleAvail(index) {
+    fleet[index].avail = fleet[index].avail === "Available" ? "Unavailable" : "Available";
+    renderFleet(fleet);
+  }
+
+  function deleteDriver(index) {
+    if (confirm("Are you sure you want to delete this vehicle?")) {
+      fleet.splice(index, 1);
+      renderFleet(fleet);
+    }
+  }
+
+  function applyfilters() {
+    let cat = document.getElementById("filtercategory").value;
+    let avail = document.getElementById("filteravail").value;
+
+    let filtered = fleet.filter(v =>
+      (cat === "" || v.category === cat) &&
+      (avail === "" || v.avail === avail)
+    );
+
+    renderFleet(filtered);
+  }
+
+  function clearFilters() {
+    document.getElementById("filtercategory").value = "";
+    document.getElementById("filteravail").value = "";
+    renderFleet(fleet);
+  }
+</script>
+
+</body>
 </html>
